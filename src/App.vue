@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
+import ProductDisplay from "@/components/ProductDisplay.vue";
+
 import socksGreenImage from './assets/images/socks_green.jpeg'
 import socksBlueImage from './assets/images/socks_blue.jpeg'
 
@@ -14,7 +16,12 @@ const variants = ref([
   { id: 2235, color: 'blue', image: socksBlueImage },
 ])
 
-const cart = ref(0)
+const cart = ref([]);
+const premium = ref(true);
+
+const updateCart = (id) => {
+  cart.value.push(id);
+};
 
 const addToCart = () => cart.value += 1
 
@@ -22,8 +29,12 @@ const updateImage = (variantImage) => image.value = variantImage
 
 </script>
 
+
 <template>
   <div class="nav-bar"></div>
+  <div class="cart">Cart({{ cart.length }})</div>
+  <ProductDisplay :premium="premium" @add-to-cart="updateCart">
+  </ProductDisplay>
   <div class="cart">Cart({{ cart }})</div>
   <div class="product-display">
     <div class="product-container">
