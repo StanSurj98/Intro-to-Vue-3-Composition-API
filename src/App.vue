@@ -5,8 +5,8 @@ import socksBlueImage from './assets/images/socks_blue.jpeg'
 
 const product = ref('Socks')
 const image = ref(socksGreenImage)
-const inStock = true
-  
+const inStock = false;
+
 const details = ref(['50% cotton', '30% wool', '20% polyester'])
 
 const variants = ref([
@@ -21,13 +21,13 @@ const addToCart = () => cart.value += 1
 const updateImage = (variantImage) => image.value = variantImage
 
 </script>
-  
+
 <template>
   <div class="nav-bar"></div>
   <div class="cart">Cart({{ cart }})</div>
   <div class="product-display">
     <div class="product-container">
-      <div class="product-image">    
+      <div class="product-image">
         <img v-bind:src="image">
       </div>
       <div class="product-info">
@@ -37,13 +37,12 @@ const updateImage = (variantImage) => image.value = variantImage
         <ul>
           <li v-for="detail in details">{{ detail }}</li>
         </ul>
-        <div v-for="variant in variants" 
-          :key="variant.id"
-          @mouseover="updateImage(variant.image)"
-        >
-          {{ variant.color }}
+        <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)" class="color-circle"
+          :style="{ 'background-color': variant.color }">
         </div>
-        <button class="button" v-on:click="addToCart">Add to cart</button>
+        <button class="button" :class="{ disabledButton: !inStock }" v-on:click="addToCart" :disabled="!inStock">
+          Add to cart
+        </button>
       </div>
     </div>
   </div>
