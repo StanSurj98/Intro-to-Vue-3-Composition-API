@@ -9,7 +9,7 @@ const updateCart = (id) => {
   cart.value.push(id)
 }
 </script>
-  
+
 <template>
   <div class="nav-bar"></div>
   <div class="cart">Cart({{ cart.length }})</div>
