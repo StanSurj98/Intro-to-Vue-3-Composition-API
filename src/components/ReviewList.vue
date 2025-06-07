@@ -2,9 +2,9 @@
 defineProps({
   reviews: {
     type: Array,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 </script>
 
 <template>
@@ -13,7 +13,7 @@ defineProps({
     <ul>
       <li v-for="(review, index) in reviews" :key="index">
         <span>{{ review.name }} gave this {{ review.rating }} stars</span>
-        <br/>
+        <br />
         <span>"{{ review.content }}"</span>
       </li>
     </ul>
